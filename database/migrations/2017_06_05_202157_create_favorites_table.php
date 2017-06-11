@@ -20,7 +20,7 @@ class CreateFavoritesTable extends Migration
             
             // 外部キー設定
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('micropost_id')->references('id')->on('users');
+            $table->foreign('micropost_id')->references('id')->on('microposts');
 
             // user_idとfollow_idの組み合わせの重複を許さない
             $table->unique(['user_id', 'micropost_id']);

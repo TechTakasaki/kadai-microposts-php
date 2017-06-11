@@ -94,7 +94,10 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        
+        return redirect()->back();
     }
     
     public function followings($id)
@@ -130,15 +133,14 @@ class UsersController extends Controller
     public function fav_microposts($id)
     {
         $user = User::find($id);
-        $fav_microposts = $user->fav_microposts()->paginate(10);
+        $microposts = $user->fav_microposts()->paginate(10);
         
         $data = [
             'user' => $user,
-            'users' => $fav_microposts,
+            'microposts' => $microposts,
         ];
         
         $data += $this->counts($user);
-        
         return view('users.fav_microposts', $data);
     }
 }

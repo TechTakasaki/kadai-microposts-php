@@ -13,9 +13,13 @@
                 {!! Form::close() !!}
             </aside>
             <div class="col-xs-8">
-                @if (count($microposts) > 0)
-                    @include('microposts.microposts', ['microposts' => $microposts])
-                @endif
+                <ul class="nav nav-tabs nav-justified">
+                    <li role="presentation" class="{{ Request::is('users/' . $user->id) ? 'active' : '' }}"><a href="{{ route('users.show', ['id' => $user->id]) }}">Microposts <span class="badge">{{ $count_microposts }}</span></a></li>
+                    <li role="presentation" class="{{ Request::is('users/*/followings') ? 'active' : '' }}"><a href="{{ route('users.followings', ['id' => $user->id]) }}">Followings <span class="badge">{{ $count_followings }}</span></a></li>
+                    <li role="presentation" class="{{ Request::is('users/*/followers') ? 'active' : '' }}"><a href="{{ route('users.followers', ['id' => $user->id]) }}">Followers <span class="badge">{{ $count_followers }}</span></a></li>
+                    <li role="presentation" class="{{ Request::is('users/*/fav_microposts') ? 'active' : '' }}"><a href="{{ route('users.fav_microposts', ['id' => $user->id]) }}">Favorites <span class="badge">{{ $count_fav_microposts }}</span></a></li>
+                </ul>
+                @include('microposts.microposts', ['microposts' => $microposts])
             </div>
         </div>
     @else

@@ -24,4 +24,5 @@ abstract class Controller extends BaseController
             'count_fav_microposts' => $count_fav_microposts,
         ];
     }
+    
 }
