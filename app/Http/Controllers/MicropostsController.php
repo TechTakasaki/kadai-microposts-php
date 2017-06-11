@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use App\Micropost;
 use App\Http\Controllers\Controller;
 
 class MicropostsController extends Controller

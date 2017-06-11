@@ -19,21 +19,14 @@ class WelcomeController extends Controller
         $data = [];
         if (\Auth::check()) {
             $user = \Auth::user();
-            $count_microposts = $user->microposts()->count();
-            $count_followings = $user->followings()->count();
-            $count_followers = $user->followers()->count();
-            $count_fav_microposts = $user->fav_microposts()->count();
-            
-            $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
+            $microposts = $user->feed_microposts()->orderBy('created_at', 'desc')->paginate(10);
             
             $data = [
                 'user' => $user,
                 'microposts' => $microposts,
             ];
-            $data += $this->counts($user);
-            
-        return view('welcome', $data);    
         }
+        return view('welcome', $data);
     }
 
     /**
